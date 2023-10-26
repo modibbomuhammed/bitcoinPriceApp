@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <style>
+      #price {
+        color: aqua;
+      }
+    </style>
+    <title>BitCoin</title>
+  </head>
+  <body>
+    <h1>The Bitcoin Price is:<span id="price"></span></h1>
+    <p><button id="btn">Refresh Data</button></p>
+    <p><button id="dollar">USD</button></p>
+  </body>
+
+  <script>
+    let currencies;
+    const button = document.getElementById("btn");
+    button.addEventListener("click", () => {
+      fetch("https://api.coindesk.com/v1/bpi/currentprice.json")
+        .then((response) => response.json())
+        .then(({ bpi }) => {
+          currencies = bpi;
+          document.getElementById(
+            "price"
+          ).innerText = `${bpi.EUR.rate} ${bpi.EUR.code}`;
+        });
+    });
+    document.getElementById("dollar").addEventListener("click", () => {
+      const { USD } = currencies;
+      document.getElementById("price").innerText = `${USD.rate} ${USD.code}`;
+    });
+  </script>
+</html>
