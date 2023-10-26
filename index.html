@@ -5,15 +5,16 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <style>
       #price {
-        color: aqua;
+        color: blue;
       }
     </style>
     <title>BitCoin</title>
   </head>
   <body>
     <h1>The Bitcoin Price is:<span id="price"></span></h1>
-    <p><button id="btn">Refresh Data</button></p>
+    <p><button id="btn">EUR</button></p>
     <p><button id="dollar">USD</button></p>
+    <p><button id="pounds">GBP</button></p>
   </body>
 
   <script>
@@ -32,6 +33,11 @@
     document.getElementById("dollar").addEventListener("click", () => {
       const { USD } = currencies;
       document.getElementById("price").innerText = `${USD.rate} ${USD.code}`;
+    });
+
+    document.getElementById("pounds").addEventListener("click", () => {
+      const { GBP } = currencies;
+      document.getElementById("price").innerText = `${GBP.rate} ${GBP.code}`;
     });
   </script>
 </html>
